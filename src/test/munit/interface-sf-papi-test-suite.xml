@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="interface-sf-papi-test-suite.xml" />
+	<munit:test name="interface-sf-papi-test-suite-sfdc-papi-APIKIT:BAD_REQUEST" doc:id="7ca1bade-c66d-48af-8ef8-486d2854f418" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="155a02b3-dbdb-41c5-81c1-7a30af83c5c5" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="0f62c46c-ff93-45cf-a832-8df7944f9fc6" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="75775836-f1c4-44df-9d4a-560e148d341d" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="1c56d42d-d638-4cdd-bca8-66b5dc4a8503" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="90b3c052-d3d9-412a-99be-b3d06ac58483" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="697dc07a-7477-4f71-981e-6b91e66f876f" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-APIKIT:NOT_FOUND" doc:id="025b96ab-eba7-4771-80d2-fb7d5ccbdd1e" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="738e7c1d-39d9-41db-85de-2f6c5213e0ef" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="a1de8b8c-39ee-43a1-9e2d-1a469faca5f4" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="295760fe-3526-448c-8204-67079f7c8db0" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="28d29e1c-6d5a-40b7-a6f4-695aa30187aa" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="102a9d93-5511-4cfd-a041-363bac7a9cbf" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="b30fe22a-0af8-4e1f-bab3-e14e4d0b8028" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-APIKIT:METHOD_NOT_ALLOWED" doc:id="62bd7cec-e901-47c0-b46a-3e46368b8104" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="a6d92931-d809-4270-9504-9d3e78814b5c" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="92b3ffde-ce9b-427d-8774-60ea2b62cece" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="0f65dfd6-4a61-404f-bda9-cfd603b1922f" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="7ec46760-1891-4dc1-97d4-5fabe942547b" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="1783d62a-fc61-4e99-b652-efbcebd028de" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="cc70edfc-6b42-45f7-a9f7-cb488bd14a22" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-APIKIT:NOT_ACCEPTABLE" doc:id="6d2245bf-b33c-436d-a526-74059d67de30" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="8fc2c536-0370-4ed7-9f68-893cf5c708e2" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="53b73c47-312c-4518-9b3a-855b6c4c53f8" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="73d90513-829c-4e24-a11d-5dbdd2117973" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="11b00119-e27e-4e5e-a4e6-af52c6747b91" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="db47cffa-ddf2-4b7b-808e-d5034666a9e9" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="3db79ceb-0a6b-4a14-9295-ea0d8852a813" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-APIKIT:UNSUPPORTED_MEDIA_TYPE" doc:id="cf70f54e-a1e6-49ee-ac49-79170cb14cbb" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="f7f016c3-6d17-42b1-964b-af0d3ee0d8e4" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="2aef08e0-d889-439b-b435-f6122ba07be3" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="aab4c9df-ab45-44e1-b71d-193e42115f30" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="47cfc404-7929-47fd-95bc-dd223d6df075" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="9b3d7195-daa2-4748-bd17-b3feb6e687a4" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="426f8569-0764-457e-ac30-46b75f4c30e9" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-APIKIT:NOT_IMPLEMENTED" doc:id="df815328-c385-4b7e-8e52-e0150536c95e" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="7fd0e90e-69c1-4700-b43b-87e3757b9c98" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="8b0fb4f5-ba51-4ea1-bfb7-1323b6a8c093" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="1ecfa39b-d666-4c45-88bc-0d75ddc36567" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="1f4f6e36-b7c2-45f2-b270-5713192845dd" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="59a1617c-4e18-49b9-8273-243708f5d976" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="084b33f9-bcdd-4c40-a337-1edd1735e6f4" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:BAD_GATEWAY" doc:id="045363ad-6733-4e9e-9f60-526686e89ed5" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="167666b0-0720-472e-8fbb-7895746832e9" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:BAD_GATEWAY" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="7489cdc1-3d8a-4241-9b21-c621d94079df" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="df1c8046-3136-42d4-8407-e932da3f63b1" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="3d9c87d3-731f-472e-a2d4-58d245cef204" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="6c716a40-6623-4b2f-a0c7-6204dc0c28dc" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="6e9c78f1-c28f-47a4-8b32-726415f3c47c" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:BAD_REQUEST" doc:id="e001d9e4-b69f-4b73-81c1-9cdbbf322e46" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="2db8a4fb-2c54-4c77-a09c-82cd311aeb06" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:BAD_REQUEST" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="e7b971bb-d56c-4b00-ad1b-b3ca5996143e" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="867a1652-cb2a-494e-a7ef-3483fd9d01e3" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="4f497ef1-5dfb-4b00-a9e7-6cc5bf07dce5" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="b32928ac-6cb8-4c09-ae7f-0e3c561c4554" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="af7c5eca-bce5-4772-955c-94aac131a94f" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:CLIENT_SECURITY" doc:id="aae724f2-2be1-41ae-9737-8f4b883fc14b" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="f2d44ee4-2862-4d64-882f-108a475bcf8e" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:CLIENT_SECURITY" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="f670078e-0ebf-4ce7-9c24-910c44d746ab" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="180cde77-e254-4488-99a4-20a8d4c72353" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="4df7be53-d344-40b1-b0a4-446265bb5f8a" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="b487018e-b7f7-4978-96c0-87ac3b16945b" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="eedb6153-cf21-4db9-8267-75efcd9e5e4f" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:CONNECTIVITY" doc:id="c42aacb8-8d62-4028-a998-08e62bbd6451" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="43eceb46-042f-4075-ac72-f956bd30abd6" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:CONNECTIVITY" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="6f1f5f12-1fd2-4100-9c05-d37c87cacbb0" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="283f2c9e-d1d5-41cb-8c35-d1ed39fcaa88" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="430e8214-b28c-491d-a3ae-d94e698211ed" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="ad37fe6b-fcb9-4303-8383-f074d106c301" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="6ec418b0-b6c7-4b2b-8fbb-432c1abcd5e3" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:FORBIDDEN" doc:id="9520b5ce-7114-4ee7-a425-e910b30a48d4" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="beebee1c-64b2-4649-8658-c9d754554a1a" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:FORBIDDEN" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="875a7184-3cde-4579-b8c8-eceb2c1d13c2" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="0696036d-2a49-4b8a-8830-4459563a9b01" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="fc42f3d2-13b8-43bb-8e19-de1d49fe463f" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="07809b51-c318-447b-8ec2-021e9f984c15" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="c5279adb-3fd1-4047-a60c-71147869acc9" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:METHOD_NOT_ALLOWED" doc:id="f60dd837-689e-47f9-b5be-ceca008854b2" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="fad2a729-c089-43de-bffc-7cd88d282b92" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="564e270d-7599-4cb9-9332-b1955dc94d07" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="53c829cd-7f1f-4ceb-bf14-49a8ee2ea06d" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="a1f7bdf1-694b-4d40-b9f3-23e8dcd06978" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="f1b9d359-e028-49c7-86c5-f73c20bf493e" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="fc10884c-a257-47ae-b087-508891160784" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:NOT_ACCEPTABLE" doc:id="7e236f42-87ff-4602-9fb1-c12613591252" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="40863518-c667-4021-9408-679b2ea80b07" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="17ed399b-ed8f-4dc2-bcc7-ca082f9292ac" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="5ab74420-4e2e-4cf3-b107-dfd786e80b4b" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="82475204-ffa6-4f2b-b427-85595c66fc54" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="0d6cbf7b-e484-40f8-8c6d-68ca276666af" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="ab568538-c6fd-41b0-b818-a891891289ac" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:NOT_FOUND" doc:id="4d8174c4-30fb-4315-8a3b-e5e3dc4d2571" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="06cb9f63-be83-4cbf-b590-fdf32960976b" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:NOT_FOUND" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="ad07ca56-d9ee-455b-8256-abdefae7c520" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="059bd22e-41d8-4562-828f-7738a2709632" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="9623bf0c-3c26-42eb-a24e-1c5bc1628e15" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="59c3451c-33de-4379-8911-9ccfb81afceb" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="422fbcf6-f3e9-49fa-b48c-064c47d7e347" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:PARSING" doc:id="03925fa8-af5b-4c83-905d-c186fa6de290" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="c1db1d94-b280-4547-8f27-faa79353098d" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:PARSING" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="978cc262-cfd7-46ba-8f2a-0113007f28d9" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="f174befc-892e-400b-a874-fd14c82367b0" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="dd663188-ad3d-4da3-bf2f-11f92922b0e9" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="c32af9ea-ca04-4105-a043-ecaa8e08ef99" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="80b3fe7a-b57e-4920-a5e0-624675e13d7e" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:RETRY_EXHAUSTED" doc:id="dea556e4-d9de-48a2-af2c-15c231d26b50" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="e10bc82c-6990-4e03-a0cb-c17a55cec163" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:RETRY_EXHAUSTED" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="d33fbf12-5a44-4157-b477-71a0d1ae6e0b" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="902d8b0a-f64b-4cef-bf4a-a780f1ea82e8" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="39baec03-624a-4a9f-93ee-b5e2e2e362d5" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="e84531ac-5417-4ee8-96a1-282af5a29dc3" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="d388db91-0a67-4c6d-a840-ba32c049ad02" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:SECURITY" doc:id="cdffdc37-4bdd-4ee4-8f22-5b0e7ac9deec" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="a8c329d9-c7c3-4e25-81a2-6c0beaee5524" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:SECURITY" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="94aad4e9-4594-4d87-ac8e-42ce0f3f6dd5" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="fbf4fa0e-60ee-47c5-baf3-4fe8737aec81" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="7920beb4-77f8-44af-ba0f-f1343b6aae63" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="9729d8ae-c568-4d68-9693-88a69a375753" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="a1a3b52a-4130-472f-b7d2-aac42ce99b76" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:SERVICE_UNAVAILABLE" doc:id="2c36badb-e199-4b90-aa75-0215d83cb16c" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="884b6cfe-2d65-49fa-b4b5-9cb88e4decc2" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:SERVICE_UNAVAILABLE" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="b84e5da3-d150-4e7e-a585-3548d3885bdb" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="f8531fa2-6123-4d03-a331-f5d40a97c770" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="363523c6-3d66-4f26-ab55-b52242a5d771" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="b1d2b3ce-5fc4-4c5c-8ae3-dff1e4b4fef6" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="b1011271-c982-42c2-a456-3890637c5a40" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:TIMEOUT" doc:id="8ee61d7a-211c-4754-8985-00cf144f6a00" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="c3adf3fd-728b-4b64-a989-f8453fbbe5b1" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:TIMEOUT" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="b8c46a0a-57e5-49bf-bf88-ba08ad33c01b" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="a28af574-78e6-484a-b1d8-3aba214b8892" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="96677e9a-a7b9-4a4a-a066-ee061be06943" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="5fa63a50-6ec0-482b-ad5a-e20d571950d7" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="4b8d31c4-246e-478c-b2ee-de93d4a17fdf" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:TOO_MANY_REQUESTS" doc:id="f1aecbfb-1b8c-422a-92fd-611db027c869" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="ddacdf4b-a1b6-4124-891c-561439ec2dd2" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:TOO_MANY_REQUESTS" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="5a251967-525b-4b67-8b04-e4e5c297c934" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="2a4d634c-f35e-4854-ae67-d693ec7545e3" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="4aa49e90-f90e-4376-8efa-f88a2343f0a2" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="bcfc5c89-0965-4c30-bb9e-5137afcfbbc4" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="933a96f4-398a-40fb-9a95-0b632fea3f33" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:UNAUTHORIZED" doc:id="6a1c9ec4-d3f1-4072-ad85-309855a3ca69" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="3e3c544b-8661-4312-87e8-59c3feec96cb" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:UNAUTHORIZED" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="985c4c79-3306-4ca3-b843-a82cec24d622" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="0f756d17-990b-4859-a54f-38a2c0df1a1a" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="018631e0-6e82-415d-bc6c-ed2649fe0aa7" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="857eea71-9c76-4b49-bcda-2530affad14a" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="f11415d0-bf9a-48e8-9c11-018fc6456efc" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:UNSUPPORTED_MEDIA_TYPE" doc:id="d4ec9bc4-907e-42a9-b252-395ca88dd361" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="69575c84-61c1-4f98-820c-2a0eac6d2bdd" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="fd617480-abca-45a8-be44-a4a4d055e522" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="802d56b8-0716-46b4-861d-45c87ab2e4c7" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="b00d03e6-99c1-42e8-b48d-6e0573eabbf7" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="42dc4a75-97ea-426e-85cb-1413b2fab63f" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="b7f9dda3-5d36-43c2-9c25-81510e80eab8" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-HTTP:INTERNAL_SERVER_ERROR" doc:id="8db78a75-b0da-4688-8cb7-0b779c93ad8a" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="010bd503-bf25-4dd8-9e6d-e681cc250e97" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:INTERNAL_SERVER_ERROR" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="5c29708f-2feb-44ea-8980-7085e31ebbe7" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="b49966b0-36f0-4a67-bef8-5232e1372f55" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="5baffec5-48b7-4fe9-b319-f9f1fa2c41ba" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="e3fec5b2-b684-4650-b02d-b11a2b71c38a" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="84b0707f-747b-4a83-9759-00d094a2e2f0" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+		<munit:test name="interface-sf-papi-test-suite-sfdc-papi-ANY" doc:id="88ae2491-3625-4cc7-8d1d-853becd88b36" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="3a966bac-46a9-4d40-a6c3-973138987b47" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sfdc-papi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="ANY" />
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="172a3ac3-2921-4018-811a-6842bb454e44" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-main" doc:id="1035ba6a-d34e-46b5-b09c-7704775df4ab" name="sfdc-papi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="9b6ac387-a4a8-4ff1-b8e6-13177fcedc30" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="f5c980e1-b616-431a-aeac-8c17ea2c8fc3" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="378f51e9-fef3-46fd-9b70-9a72739dc6aa" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="interface-sf-papi-test-suite-sfdc-papi-consoleTest" doc:id="1bba8f33-0377-4751-90d0-9f3e879f301e" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="54c73258-2cd3-4f8a-bca4-d08dd2f67baa" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="821ca9db-6c0d-4596-8eaa-98d5a3a47723" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="3848c971-7861-4e80-bade-6ff74ce8ce58" >
+				<flow-ref doc:name="Flow-ref to sfdc-papi-console" doc:id="7e6d9ac7-318c-4283-9ead-97bb99237c40" name="sfdc-papi-console" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="acc5b9ec-f9ef-46a6-a6ed-2ebbca444728" >
+						<set-payload value="#[payload]" doc:name="Set Payload" doc:id="1a14d266-a2a6-4851-9f11-708cd67dd9f1" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="899b0162-cf57-4511-be4c-99a98dee17c1" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

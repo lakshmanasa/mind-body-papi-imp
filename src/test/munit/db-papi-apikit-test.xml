@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:tls="http://www.mulesoft.org/schema/mule/tls" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd http://www.mulesoft.org/schema/mule/munit-tools http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd 
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
+    <munit:config name="db-papi-apikit-test.xml" />
+    <http:request-config name="DB" doc:name="HTTP Request configuration" doc:id="9bcfbf23-32bb-42a4-aeb4-a80975ffdf25" basePath="/api" >
+		<http:request-connection protocol="HTTPS" host="localhost" port="8083" >
+			<tls:context >
+				<tls:trust-store path="client-truststore.jks" password="mulesoft" type="jks" insecure="true" />
+			</tls:context>
+		</http:request-connection>
+	</http:request-config>
+	<munit:test name="post:\papi\db\accounts:application\json:db-papi-config-201-application\json-FlowTest" description="Verifying functionality of [post:\papi\db\accounts:application\json:db-papi-config-201-application\json]">
+        <munit:enable-flow-sources>
+            <munit:enable-flow-source value="db-papi-main" />
+            <munit:enable-flow-source value="post:\papi\db\accounts:application\json:db-papi-config" />
+        </munit:enable-flow-sources>
+        <munit:behavior>
+            <set-payload value="#[MunitTools::getResourceAsString('scaffolder/request/post_papi_db_accounts_application_json.json')]" />
+			<munit-tools:mock-when doc:name="Mock when" doc:id="7d89a418-f4b3-40d4-a77d-42777db84b01" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="821ca9db-6c0d-4596-8eaa-98d5a3a47723" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[output application/json --- {&#10;  "generatedKeys": {},&#10;  "affectedRows": 1&#10;}]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+        </munit:behavior>
+        <munit:execution>
+            <http:request config-ref="DB" method="POST" path="/papi/db/accounts" responseTimeout="1800000">
+                <http:body ><![CDATA[#[output application/json --- {
+  "eventId": "cbedafbb-ffc1-452e-9468-7513e9c69573",
+  "eventType": "2",
+  "eventData": [
+    {
+      "internalId": "2"
+    }
+  ],
+  "source": "salesforce",
+  "targets": "database",
+  "dataType": "object",
+  "timeStamp": "06-April-2023-11:27:03"
+}]]]></http:body>
+				<http:headers><![CDATA[#[{"Accept":"application/json","Content-Type":"application/json"}]]]></http:headers>
+            </http:request>
+        </munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="8875fc29-7352-480d-a65d-74c1e3cf2ae4" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+    </munit:test>
+    <munit:test name="put:\papi\db\accounts:application\json:db-papi-config-201-application\json-FlowTest" description="Verifying functionality of [put:\papi\db\accounts:application\json:db-papi-config-201-application\json]">
+        <munit:enable-flow-sources>
+            <munit:enable-flow-source value="db-papi-main" />
+            <munit:enable-flow-source value="put:\papi\db\accounts:application\json:db-papi-config" />
+        </munit:enable-flow-sources>
+        <munit:behavior>
+            <set-payload value="#[MunitTools::getResourceAsString('scaffolder/request/put_papi_db_accounts_application_json.json')]" />
+			<munit-tools:mock-when doc:name="Mock when" doc:id="5e4d51ba-cc18-4fc2-90ed-73a85c50a4f8" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="821ca9db-6c0d-4596-8eaa-98d5a3a47723" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[output application/json --- {&#10;  "generatedKeys": {},&#10;  "affectedRows": 1&#10;}]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+        </munit:behavior>
+        <munit:execution>
+            <http:request config-ref="DB" method="PUT" path="/papi/db/accounts" responseTimeout="1800000">
+                <http:body ><![CDATA[#[output application/json --- {
+  "AccountName": "Lakshman",
+  "AccountNumber": "1",
+  "FirstName": "Lakshman",
+  "MiddleName": "Mohan",
+  "LastName": "Asa",
+  "Phone": "9347359767",
+  "Email": "asa@gmail.com"
+}]]]></http:body>
+				<http:headers><![CDATA[#[{"Accept":"application/json","Content-Type":"application/json"}]]]></http:headers>
+            </http:request>
+        </munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="00997fb2-d440-4a23-9d14-90e499796978" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+    </munit:test>
+    <munit:test name="get:\papi\db\accounts\(id):db-papi-config-200-application\json-FlowTest" description="Verifying functionality of [get:\papi\db\accounts\(id):db-papi-config-200-application\json]">
+        <munit:enable-flow-sources>
+            <munit:enable-flow-source value="db-papi-main" />
+            <munit:enable-flow-source value="get:\papi\db\accounts\(id):db-papi-config" />
+        </munit:enable-flow-sources>
+        <munit:behavior>
+            <set-variable variableName="id" value="1" doc:name="id" />
+			<munit-tools:mock-when doc:name="Mock when" doc:id="8dc85bc8-e0e7-4c1b-b872-02d12cc87271" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="821ca9db-6c0d-4596-8eaa-98d5a3a47723" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[output application/json --- [{&#10;  "AccountName": "Lakshman",&#10;  "AccountNumber": "1",&#10;  "FirstName": "Lakshman",&#10;  "MiddleName": "Mohan",&#10;  "LastName": "Asa",&#10;  "Phone": "9347359767",&#10;  "Email": "asa@gmail.com"&#10;}]]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+        </munit:behavior>
+        <munit:execution>
+            <http:request config-ref="DB" method="GET" path="#['/papi/db/accounts/$(vars.id)']" responseTimeout="1800000">
+                <http:headers><![CDATA[#[{"Accept":"application/json"}]]]></http:headers>
+            </http:request>
+        </munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="0f8214f1-9e67-4dcd-8523-6001900cc565" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+    </munit:test>
+</mule>
